@@ -1,38 +1,81 @@
-@use 'scss-reset/reset';
+@use "scss-reset/reset";
 
-:root{
-
+:root {
   //colors
-  --primary-bg-color: white;
-  --primary-fg-color: black;
+  --primary-bg-color: black;
+  --primary-fg-color: white;
+  --primary-component-color: #1b1e21;
+  --component-box-shadow: 0px 1px 0px rgba(161, 161, 161, 0.25),
+    inset 0px 0px 0px 1px #000000, inset 0px 6px 12px rgba(0, 0, 0, 0.25),
+    inset 0px 1px 0px 1px rgba(0, 0, 0, 0.25);
 
-  // container  
+  --secondary-component-shadow: -2px 0px 2px rgba(0, 0, 0, 0.2),
+    1px 0px 0px #000000, inset 0px 0px 0px 1px rgba(95, 95, 95, 0.18),
+    inset 0px 1px 0px rgba(95, 95, 95, 0.5);
+
+  --secondary-component-shadow-active: -2px 0px 2px rgba(0, 0, 0, 0.2),
+    1px 0px 0px #000000, inset 0px 0px 0px 1px rgba(95, 95, 95, 0.18),
+    inset 0px 1px 0px rgba(95, 95, 95, 0.5);
+  --secondary-bg-color: linear-gradient(
+    180deg,
+    #2a3036 0%,
+    #171b21 90%,
+    #13161a 100%
+  );
+  --secondary-bg-color-rv: linear-gradient(
+    180deg,
+    #13161a 0%,
+    #171b21 10%,
+    #2a3036 100%
+  );
+  // container
   --max-container-width: 1000px;
+  --toggle-box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.2), 1px 0px 0px #000000,
+    inset 0px 0px 0px 1px rgba(95, 95, 95, 0.18),
+    inset 0px 1px 0px rgba(95, 95, 95, 0.5);
 }
 // optional resets
-
-a{
+html,
+body {
+  min-height: 100%;
+}
+a {
   text-decoration: none;
   color: var(--primary-fg-color);
 }
 
 // main
 
-body{
+body {
   font-family: var(--font-primary);
   background: var(--primary-bg-color);
   color: var(--primary-fg-color);
 }
 
-main{
-  min-height: 100vh;
+main {
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  background-image: url("/noise.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
   @media screen and (max-width: 1020px) {
     padding: 0 20px;
   }
+  .noise {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: -99;
+    width: 100%;
+    height: calc(200px + 100vh);
+    opacity: 0.25;
+    pointer-events: none;
+    transform: translateY(0px);
+    filter: contrast(120%) brightness(120%);
+  }
 }
-.container{
+.container {
   max-width: var(--max-container-width);
   margin: 0 auto;
 }
