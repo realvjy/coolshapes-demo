@@ -1,20 +1,25 @@
 "use client";
-import {Coolshape, getRandomShape, shapes} from "coolshapes-react";
-import {useEffect, useState} from "react";
-import styled, {css} from "styled-components";
-import {Dropdown} from "@/components/ui/dropdown";
-import {Input} from "@/components/ui/input";
-import {Toggle} from "@/components/ui/toggle";
-import {Button} from "@/components/ui/button";
+import { Coolshape, getRandomShape, shapes } from "coolshapes-react";
+import { useEffect, useState } from "react";
+import styled, { css } from "styled-components";
+import { Dropdown } from "@/components/ui/dropdown";
+import { Input } from "@/components/ui/input";
+import { Toggle } from "@/components/ui/toggle";
+import { Button } from "@/components/ui/button";
 
-export default function Editor({initialShape}) {
+export default function Editor({ initialShape }) {
   const [shape, setShape] = useState(initialShape);
   const [noise, setNoise] = useState(false);
 
   return (
     <Section>
       <ShapeWrapper>
-        <Coolshape className="coolshape" index={shape.index} type={shape.shapeType} noise={noise}/>
+        <Coolshape
+          className="coolshape"
+          index={shape.index}
+          type={shape.shapeType}
+          noise={noise}
+        />
       </ShapeWrapper>
       <MenuWrapper>
         <Dropdown
@@ -24,35 +29,46 @@ export default function Editor({initialShape}) {
           value={shape.shapeType}
           onChange={(type) => {
             const maxShapes = shapes[type].length - 1;
-            const index = shape.index >  maxShapes? maxShapes: shape.index
-            setShape({index, shapeType: type})
+            const index = shape.index > maxShapes ? maxShapes : shape.index;
+            setShape({ index, shapeType: type });
           }}
         />
         <div className={"index-noise-wrapper"}>
-          <Input label={"index"} value={shape.index} onChange={(value) => {
-            let index = Number(value);
-            console.log(index)
-            if (typeof index !== "number" || isNaN(index)) {
-              return
-            }
-            let maxShapes = shapes[shape.shapeType].length;
-            if (value < 0) {
-              index = maxShapes - 1
-            };
-            if (value > maxShapes - 1) {
-              index = maxShapes - 1
-            }
-            setShape({...shape, index: index })
-          }} />
+          <Input
+            label={"index"}
+            value={shape.index}
+            onChange={(value) => {
+              let index = Number(value);
+              console.log(index);
+              if (typeof index !== "number" || isNaN(index)) {
+                return;
+              }
+              let maxShapes = shapes[shape.shapeType].length;
+              if (value < 0) {
+                index = maxShapes - 1;
+              }
+              if (value > maxShapes - 1) {
+                index = maxShapes - 1;
+              }
+              setShape({ ...shape, index: index });
+            }}
+          />
 
-          <Toggle label={"noise"} onChange={(e) => {
-            setNoise(e)
-          }} value={noise}/>
+          <Toggle
+            label={"noise"}
+            onChange={(e) => {
+              setNoise(e);
+            }}
+            value={noise}
+          />
         </div>
-        <Button label={""} onClick={() => {
-          setShape(getRandomShape({onlyId: true}))
-        }}>
-          <img src={"/random.svg"}/>
+        <Button
+          label={""}
+          onClick={() => {
+            setShape(getRandomShape({ onlyId: true }));
+          }}
+        >
+          <img src={"/random.svg"} />
         </Button>
       </MenuWrapper>
     </Section>
@@ -64,6 +80,9 @@ const Section = styled.section`
   flex-direction: column;
   align-items: center;
   margin: auto 0;
+  @media screen and (max-width: 768px) {
+    margin-top: 80px;
+  }
 `;
 
 const ShapeWrapper = styled.div`
@@ -75,7 +94,10 @@ const ShapeWrapper = styled.div`
 
   .coolshape {
     width: auto;
-    height: 200px;
+    height: 250px;
+    @media screen and (max-width: 768px) {
+      height: 180px;
+    }
   }
 `;
 
@@ -87,14 +109,13 @@ const MenuWrapper = styled.div`
   width: 100%;
   justify-content: center;
 
-
   .index-noise-wrapper {
     display: flex;
     gap: 20px;
   }
 
   @media screen and (max-width: 800px) {
-    margin-top: 5.62rem;
+    margin-top: 40px;
     flex-direction: column;
     align-items: center;
     .index-noise-wrapper {

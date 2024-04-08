@@ -1,32 +1,31 @@
 import styled from "styled-components";
-import {Label} from "@/components/ui/common";
-import {useEffect, useRef, useState} from "react";
+import { Label } from "@/components/ui/common";
+import { useEffect, useRef, useState } from "react";
 
-
-export const Dropdown = ({label, items, value, onChange}) => {
+export const Dropdown = ({ label, items, value, onChange }) => {
   const [isHidden, setHidden] = useState(true);
   const dropdownRef = useRef(null);
   const [currentItem, setItem] = useState(value);
 
   useEffect(() => {
-    onChange(currentItem)
+    onChange(currentItem);
   }, [currentItem]);
 
-  useEffect(()=>{
-    setItem(value)
+  useEffect(() => {
+    setItem(value);
   }, [value]);
 
   return (
     <Wrapper>
       {label && <Label>{label}</Label>}
-      <DropDownButton onClick={() => {
-        setHidden(!isHidden)
-      }}>
-        <div className={"text"}>
-          {currentItem}
-        </div>
-        <div className={"icon-wrapper"} >
-          <img src={isHidden ? "/arrow-bottom.svg" : "/arrow-up.svg"}/>
+      <DropDownButton
+        onClick={() => {
+          setHidden(!isHidden);
+        }}
+      >
+        <div className={"text"}>{currentItem}</div>
+        <div className={"icon-wrapper"}>
+          <img src={isHidden ? "/arrow-bottom.svg" : "/arrow-up.svg"} />
         </div>
       </DropDownButton>
       <DropDownWrapper>
@@ -34,23 +33,29 @@ export const Dropdown = ({label, items, value, onChange}) => {
           <DropDownInnerWrapper>
             <DropDownListWrapper>
               {items.map((item, _i) => {
-                return <DropDownItem key={item + _i} onClick={() => {
-                  setItem(item);
-                  setHidden(true);
-                }}>{item}</DropDownItem>
+                return (
+                  <DropDownItem
+                    key={item + _i}
+                    onClick={() => {
+                      setItem(item);
+                      setHidden(true);
+                    }}
+                  >
+                    {item}
+                  </DropDownItem>
+                );
               })}
             </DropDownListWrapper>
           </DropDownInnerWrapper>
           <div className={"gradient"}>
-            <div className={"top"}/>
-            <div className={"bottom"}/>
+            <div className={"top"} />
+            <div className={"bottom"} />
           </div>
         </DropDown>
       </DropDownWrapper>
     </Wrapper>
-  )
+  );
 };
-
 
 const Wrapper = styled.div`
   display: flex;
@@ -72,6 +77,7 @@ const DropDownButton = styled.div`
   .text {
     padding: 12px 14px;
     font-size: 20px;
+    text-transform: capitalize;
   }
 
   .icon-wrapper {
@@ -100,8 +106,10 @@ const DropDown = styled.div`
   position: absolute;
   margin-top: 1rem;
   width: 100%;
-  background: #1B1E21;
-  box-shadow: 0 12px 8px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.33), 0 1px 0 rgba(0, 0, 0, 0.82), inset 0 1px 1px rgba(138, 138, 138, 0.25), inset 0 -1px 1px #414141;
+  background: #1b1e21;
+  box-shadow: 0 12px 8px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.33),
+    0 1px 0 rgba(0, 0, 0, 0.82), inset 0 1px 1px rgba(138, 138, 138, 0.25),
+    inset 0 -1px 1px #414141;
   border-radius: 10px;
   height: 220px;
   padding: 0.43rem 0.56rem;
@@ -133,13 +141,11 @@ const DropDown = styled.div`
 
       &.top {
         border-radius: 0.25rem 0.25rem 0 0;
-        background: linear-gradient(to bottom, #1B1E21, transparent);
+        background: linear-gradient(to bottom, #1b1e21, transparent);
       }
-    ;
-
       &.bottom {
         border-radius: 0 0 0.25rem 0.25rem;
-        background: linear-gradient(to top, #1B1E21, transparent);
+        background: linear-gradient(to top, #1b1e21, transparent);
       }
     }
   }
@@ -151,13 +157,12 @@ const DropDownInnerWrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-;
   -ms-overflow-style: none;
   scrollbar-width: none;
 `;
 
 const DropDownListWrapper = styled.ul`
-
+  padding: 8px;
 `;
 const DropDownItem = styled.li`
   padding: 0.62rem 0;
@@ -169,7 +174,10 @@ const DropDownItem = styled.li`
   text-transform: capitalize;
   font-weight: 400;
   cursor: pointer;
-
+  &:last-child {
+    border: none;
+    box-shadow: none;
+  }
   &:hover {
     color: rgba(255, 255, 255, 0.47);
   }

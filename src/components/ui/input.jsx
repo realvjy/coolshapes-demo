@@ -1,27 +1,28 @@
 import styled from "styled-components";
-import {Label} from "@/components/ui/common";
+import { Label } from "@/components/ui/common";
 
-
-export const Input = ({label, value, onChange}) => {
-
+export const Input = ({ label, value, onChange }) => {
   return (
     <Wrapper>
-      {
-        label && <Label>{label}</Label>
-      }
+      {label && <Label>{label}</Label>}
       <InputWrapper>
-        <input value={value} onChange={(e)=>{onChange(e.target.value)}}/>
+        <input
+          value={value}
+          onChange={(e) => {
+            onChange(e.target.value);
+          }}
+        />
         <div className={"btn-wrapper"}>
-          <div className={"up"} onClick={()=>onChange(value+1)}>
-            <img src={"/arrow-up.svg"} alt={"+"}/>
+          <div className={"up"} onClick={() => onChange(value + 1)}>
+            <img src={"/arrow-up.svg"} alt={"+"} />
           </div>
-          <div className={"down"} onClick={()=>onChange(value-1)}>
-            <img src={"/arrow-down.svg"} alt={"-"}/>
+          <div className={"down"} onClick={() => onChange(value - 1)}>
+            <img src={"/arrow-down.svg"} alt={"-"} />
           </div>
         </div>
       </InputWrapper>
     </Wrapper>
-  )
+  );
 };
 
 const Wrapper = styled.div`
@@ -36,7 +37,7 @@ const InputWrapper = styled.div`
   display: flex;
   flex-direction: row;
   border-radius: 10px;
-  input{
+  input {
     width: 100%;
     height: 100%;
     padding: 12px 14px;
@@ -45,25 +46,30 @@ const InputWrapper = styled.div`
     border: none;
     color: white;
   }
-  .btn-wrapper{
+  .btn-wrapper {
     display: flex;
     border-radius: 1px 9px 9px 1px;
     flex-direction: column;
     width: 100%;
-    div{
+    div {
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      img{
+      img {
         cursor: pointer;
       }
     }
+    .up {
+      transform: translateY(4px);
+    }
+    .down {
+      transform: translateY(-4px);
+    }
     background: var(--secondary-bg-color);
     box-shadow: var(--secondary-component-shadow);
-    &:hover{
+    &:hover {
       background: var(--secondary-bg-color-rv);
     }
   }
 `;
-
