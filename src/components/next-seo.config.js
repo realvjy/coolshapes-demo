@@ -2,7 +2,7 @@ export default {
     openGraph: {
         type: 'website',
         locale: 'en_IE',
-        title: 'coolshapes',
+        title: 'coolshapes demo for coolshap.es',
         url: 'https://demo.coolshap.es',
         description: 'Demo of 100+ Abstract shapes with cool grainy gradient.',
         locale: 'en_EN',

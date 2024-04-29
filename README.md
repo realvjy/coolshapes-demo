@@ -2,7 +2,7 @@
 
 # <p align=center>Coolshapes Demo</p>
 
-This repository contatin Simple demo project to check all shapes from `coolshapes-react` package.
+This repository contatin simple demo project to check all shapes from `coolshapes-react` package.
 For more details go [coolshap.es](https://coolshap.es)
 
 ----
@@ -10,7 +10,7 @@ For more details go [coolshap.es](https://coolshap.es)
 
 ## Contribution & Feedback
 
-Created by [@realvjy](https://x.com/realvjy). You are always welcome to share your feedback on twitter or any social media platform.
+Made by [@realvjy](https://x.com/realvjy). You are always welcome to share your feedback on twitter or any social media platform.
 
 If you want to contribute. Just create a pull request.
 
