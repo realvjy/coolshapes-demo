@@ -50,6 +50,9 @@ export default function Editor({ initialShape }) {
               if (value > maxShapes - 1) {
                 index = maxShapes - 1;
               }
+              if (value == maxShapes - 1) {
+                index = 0;
+              }
               setShape({ ...shape, index: index });
             }}
           />

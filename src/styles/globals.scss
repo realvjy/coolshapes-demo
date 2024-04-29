@@ -59,20 +59,11 @@ main, .main {
   flex-direction: column;
   background-repeat: no-repeat;
   background-size: cover;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(40, 40, 43, 0.1) 0%, rgba(19, 19, 21, 0.3) 40%, rgba(7, 7, 7, 0.5) 100%);
   @media screen and (max-width: 1020px) {
     padding: 0 20px;
   }
-  &::after {
-    content: "";
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    z-index: -2;
-    mix-blend-mode: overlay;
-    background: radial-gradient(50% 50% at 50% 50%, rgba(40, 40, 43, 0.1) 0%, rgba(19, 19, 21, 0.3) 40%, rgba(7, 7, 7, 0.5) 100%);
-  }
+
   .noise {
     position: fixed;
     top: 0px;
