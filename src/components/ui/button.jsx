@@ -26,7 +26,6 @@ const ButtonWrapper = styled.button`
   display: inline-flex;
   margin-top: auto;
   color: var(--white);
-  font-size: 10px;
 `;
 
 const InnerBackground = styled.div`
