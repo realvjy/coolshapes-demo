@@ -1,5 +1,5 @@
 import seoData from "./next-seo.config";
-import { promises as fs } from 'fs';
+// import { promises as fs } from 'fs';
 import path from "path";
 
 export const getMetaDataForPage = (title) => {
@@ -32,6 +32,31 @@ export const getMetaDataForPage = (title) => {
         },
     };
 };
+
+export const convertToCamelCase = (inputString) => {
+    // Remove leading numbers, symbols, and hyphens
+    if (!inputString) {
+        return "";
+    };
+    let cleanedString = inputString
+        .replace(/^[^a-zA-Z_]+/, "")
+        .replace(/[^a-zA-Z0-9_]+/g, "");
+
+    // Split the string into words
+    const words = cleanedString.split(/[\s-_]+/);
+
+    // Capitalize the first letter of each word and join with underscores
+    const camelCaseString = words
+        .map((word, index) => {
+            return index === 0
+                ? word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        })
+        .join("_");
+
+    return camelCaseString;
+
+}
 
 
 

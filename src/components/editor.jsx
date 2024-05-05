@@ -6,11 +6,42 @@ import { Dropdown } from "@/components/ui/dropdown";
 import { Input } from "@/components/ui/input";
 import { Toggle } from "@/components/ui/toggle";
 import { Button } from "@/components/ui/button";
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/mode-jsx";
+import "ace-builds/src-noconflict/theme-cloud9_night";
+import "ace-builds/src-noconflict/ext-language_tools";
+import { convertToCamelCase } from "./util";
 
 export default function Editor({ initialShape }) {
   const [shape, setShape] = useState(initialShape);
   const [noise, setNoise] = useState(false);
 
+  const codeSnippet1 = `import {Coolshape} from "coolshapes-react"
+  
+export const MyComponent = () =>{
+  return (
+    <Coolshape
+      type="${shape.shapeType}"
+      index={${shape.index}}
+      noise={${noise}}
+      size={100}
+    />
+  )
+};`;
+
+  const codeSnippet2 = `import {${convertToCamelCase(
+    shape.shapeType
+  )}} from "coolshapes-react"
+  
+export const MyComponent = () =>{
+  return (
+    <${convertToCamelCase(shape.shapeType)}
+      index={${shape.index}}
+      noise={${noise}}
+      size={100}
+    />
+  )
+};`;
   return (
     <Section>
       <ShapeWrapper>
@@ -20,6 +51,9 @@ export default function Editor({ initialShape }) {
           type={shape.shapeType}
           noise={noise}
         />
+        {/* <div className="box"></div>
+        <div className="box"></div>
+        <div className="box2"></div> */}
       </ShapeWrapper>
       <MenuWrapper>
         <Dropdown
@@ -74,6 +108,40 @@ export default function Editor({ initialShape }) {
           <img src={"/random.svg"} />
         </Button>
       </MenuWrapper>
+      {/* <AceEditorWrap>
+        <EditorBox>
+          <ActionTitle>
+            <h4>Option 1</h4>
+            <h3>Copy</h3>
+          </ActionTitle>
+          <AceEditor
+            mode="javascript"
+            theme="cloud9_night"
+            name="SVG_EDITOR"
+            placeholder="Placeholder Text"
+            style={{
+              width: "380px",
+              height: "260px",
+              fontWeight: 100,
+            }}
+            fontSize={14}
+            lineHeight={19}
+            showPrintMargin={true}
+            showGutter={false}
+            highlightActiveLine={true}
+            value={codeSnippet1}
+            setOptions={{
+              enableBasicAutocompletion: false,
+              enableLiveAutocompletion: false,
+              enableSnippets: false,
+              showLineNumbers: true,
+              tabSize: 2,
+              readOnly: true,
+              highlightActiveLine: false,
+            }}
+          />
+        </EditorBox>
+      </AceEditorWrap> */}
     </Section>
   );
 }
@@ -94,7 +162,42 @@ const ShapeWrapper = styled.div`
   background: var(--primary-component-color);
   box-shadow: var(--component-box-shadow);
   padding: 30px;
-
+  position: relative;
+  overflow: hidden;
+  .box {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 120px;
+    border-radius: 18px;
+    background: linear-gradient(
+      180deg,
+      #fff9f9 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    left: 50%;
+    top: 30px;
+    transform: translateX(-50%);
+    filter: blur(12px);
+    mix-blend-mode: overlay;
+  }
+  .box2 {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 40px;
+    background: linear-gradient(
+      180deg,
+      #fff9f9 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    left: 50%;
+    top: 40px;
+    border-radius: 18px;
+    transform: translateX(-50%);
+    filter: blur(5px);
+    mix-blend-mode: overlay;
+  }
   .coolshape {
     width: auto;
     height: 250px;
@@ -126,4 +229,32 @@ const MenuWrapper = styled.div`
       width: 100%;
     }
   }
+`;
+
+const AceEditorWrap = styled.div`
+  margin-top: 100px;
+  padding: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  .ace_selection {
+    background-color: rgba(255, 0, 0, 0.5); /* Red with 50% opacity */
+  }
+`;
+
+const EditorBox = styled.div`
+  border-radius: 6px;
+  background: #181818;
+  display: flex;
+  padding: 20px;
+  gap: 12px;
+  flex-direction: column;
+`;
+
+const ActionTitle = styled.div`
+  display: flex;
+  background: red;
+  flex-direction: row;
+  justify-content: space-between;
 `;

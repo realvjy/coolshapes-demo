@@ -4,7 +4,7 @@
   //colors
   --primary-bg-color: #0f0f11;
   --primary-fg-color: white;
-  --primary-component-color: #1b1e21;
+  --primary-component-color: #202428;
   --component-box-shadow: 0px 1px 0px rgba(161, 161, 161, 0.25),
     inset 0px 0px 0px 1px #000000, inset 0px 6px 12px rgba(0, 0, 0, 0.25),
     inset 0px 1px 0px 1px rgba(0, 0, 0, 0.25);
@@ -20,11 +20,11 @@
     180deg,
     #2a3036 0%,
     #171b21 90%,
-    #13161a 100%
+    #101216 100%
   );
   --secondary-bg-color-rv: linear-gradient(
     180deg,
-    #13161a 0%,
+    #101216 0%,
     #171b21 10%,
     #2a3036 100%
   );
@@ -33,6 +33,7 @@
   --toggle-box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.2), 1px 0px 0px #000000,
     inset 0px 0px 0px 1px rgba(95, 95, 95, 0.18),
     inset 0px 1px 0px rgba(95, 95, 95, 0.5);
+  --main-bg: radial-gradient(50% 50% at 50% 50%, rgba(66, 66, 70, 0.3) 0%, rgba(21, 21, 24, 0.2) 55%, rgba(10, 10, 10, 0.7) 120%);
 }
 // optional resets
 html,
@@ -59,7 +60,7 @@ main, .main {
   flex-direction: column;
   background-repeat: no-repeat;
   background-size: cover;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(57, 57, 61, 0.2) 0%, rgba(22, 22, 25, 0.9) 55%, rgba(10, 10, 10, 0.8) 110%);
+  background: var(--main-bg);
   @media screen and (max-width: 1020px) {
     padding: 0 20px;
   }
