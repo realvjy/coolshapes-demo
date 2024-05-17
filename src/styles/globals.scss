@@ -35,11 +35,7 @@
     inset 0px 1px 0px rgba(95, 95, 95, 0.5);
   --main-bg: radial-gradient(50% 50% at 50% 50%, rgba(66, 66, 70, 0.3) 0%, rgba(21, 21, 24, 0.2) 55%, rgba(10, 10, 10, 0.7) 120%);
 }
-// optional resets
-html,
-body {
-  min-height: 100%;
-}
+
 a {
   text-decoration: none;
   color: var(--primary-fg-color);
@@ -51,6 +47,7 @@ body {
   font-family: var(--font-primary);
   background: var(--primary-bg-color);
   color: var(--primary-fg-color);
+  height: 100%;
 }
 
 main, .main {
@@ -61,8 +58,9 @@ main, .main {
   background-repeat: no-repeat;
   background-size: cover;
   background: var(--main-bg);
-  @media screen and (max-width: 1020px) {
+  @media screen and (max-width: 768px) {
     padding: 0 20px;
+    height: 100%;
   }
 
   .noise {

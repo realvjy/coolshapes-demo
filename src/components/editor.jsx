@@ -11,6 +11,7 @@ import "ace-builds/src-noconflict/mode-jsx";
 import "ace-builds/src-noconflict/theme-cloud9_night";
 import "ace-builds/src-noconflict/ext-language_tools";
 import { convertToCamelCase } from "./util";
+import * as copy from "copy-to-clipboard";
 
 export default function Editor({ initialShape }) {
   const [shape, setShape] = useState(initialShape);
@@ -42,6 +43,16 @@ export const MyComponent = () =>{
     />
   )
 };`;
+
+  function copyCode(newCode) {
+    console.log("Here some text");
+    try {
+      copy(newCode);
+    } catch (error) {
+      // Handle any errors that may occur during the copy(viewCode) operation
+      console.error("Copy failed:", error);
+    }
+  }
   return (
     <Section>
       <ShapeWrapper>
@@ -51,9 +62,6 @@ export const MyComponent = () =>{
           type={shape.shapeType}
           noise={noise}
         />
-        {/* <div className="box"></div>
-        <div className="box"></div>
-        <div className="box2"></div> */}
       </ShapeWrapper>
       <MenuWrapper>
         <Dropdown
@@ -108,11 +116,13 @@ export const MyComponent = () =>{
           <img src={"/random.svg"} />
         </Button>
       </MenuWrapper>
-      {/* <AceEditorWrap>
+      <AceEditorWrap>
         <EditorBox>
           <ActionTitle>
-            <h4>Option 1</h4>
-            <h3>Copy</h3>
+            <h4>Method 1</h4>
+            <h3 onClick={() => copyCode(codeSnippet1)}>
+              <img src="/copy.svg" /> copy
+            </h3>
           </ActionTitle>
           <AceEditor
             mode="javascript"
@@ -121,11 +131,11 @@ export const MyComponent = () =>{
             placeholder="Placeholder Text"
             style={{
               width: "380px",
-              height: "260px",
+              height: "220px",
               fontWeight: 100,
             }}
             fontSize={14}
-            lineHeight={19}
+            lineHeight={18}
             showPrintMargin={true}
             showGutter={false}
             highlightActiveLine={true}
@@ -137,11 +147,46 @@ export const MyComponent = () =>{
               showLineNumbers: true,
               tabSize: 2,
               readOnly: true,
+
               highlightActiveLine: false,
             }}
           />
         </EditorBox>
-      </AceEditorWrap> */}
+        <EditorBox>
+          <ActionTitle>
+            <h4>Method 2</h4>
+            <h3 onClick={() => copyCode(codeSnippet2)}>
+              <img src="/copy.svg" /> copy
+            </h3>
+          </ActionTitle>
+          <AceEditor
+            mode="javascript"
+            theme="cloud9_night"
+            name="SVG_EDITOR"
+            placeholder="Placeholder Text"
+            style={{
+              width: "380px",
+              height: "220px",
+              fontWeight: 100,
+            }}
+            fontSize={14}
+            lineHeight={18}
+            showPrintMargin={true}
+            showGutter={false}
+            highlightActiveLine={true}
+            value={codeSnippet2}
+            setOptions={{
+              enableBasicAutocompletion: false,
+              enableLiveAutocompletion: false,
+              enableSnippets: false,
+              showLineNumbers: true,
+              tabSize: 2,
+              readOnly: true,
+              highlightActiveLine: false,
+            }}
+          />
+        </EditorBox>
+      </AceEditorWrap>
     </Section>
   );
 }
@@ -232,29 +277,59 @@ const MenuWrapper = styled.div`
 `;
 
 const AceEditorWrap = styled.div`
-  margin-top: 100px;
+  margin-top: 50px;
   padding: 30px;
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 40px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    transform: scale(0.8);
+    margin-top: 20px;
+  }
+  /* background: var(--primary-component-color); */
+  /* box-shadow: var(--component-box-shadow); */
   .ace_selection {
-    background-color: rgba(255, 0, 0, 0.5); /* Red with 50% opacity */
   }
 `;
 
 const EditorBox = styled.div`
-  border-radius: 6px;
+  border-radius: 12px;
   background: #181818;
   display: flex;
   padding: 20px;
   gap: 12px;
   flex-direction: column;
+  /* background: var(--primary-component-color); */
+  box-shadow: var(--component-box-shadow);
 `;
 
 const ActionTitle = styled.div`
   display: flex;
-  background: red;
+  /* background-color: rgba(93, 93, 93, 0.5);  */
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 8px;
+  align-items: center;
+  img {
+    height: 16px;
+  }
+  h4 {
+    color: #535353;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 0 #000000, 0 -1px 0 #797979;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  h3 {
+    font-size: 14px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 `;
+
+const CopyBtn = styled.button``;
