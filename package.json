@@ -12,7 +12,7 @@
   "dependencies": {
     "coolshapes-react": "^0.1.2-beta.0",
     "copy-to-clipboard": "^3.3.3",
-    "next": "14.1.0",
+    "next": "^14.2.4",
     "nextjs-google-analytics": "^2.3.3",
     "react": "^18",
     "react-ace": "^11.0.1",
