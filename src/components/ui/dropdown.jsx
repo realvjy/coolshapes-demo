@@ -83,10 +83,7 @@ const DropDownButton = styled.div`
   .icon-wrapper {
     display: flex;
     border-radius: 1px 9px 9px 1px;
-
-    img {
-      margin: 0 13px;
-    }
+    padding: 0 13px;
 
     background: var(--secondary-bg-color);
     box-shadow: var(--secondary-component-shadow);
